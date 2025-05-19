@@ -1,3 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from elibrary_app.forms import EBooksForm
+from elibrary_app.models import EBooksModel
+from django.contrib.auth.models import User,auth
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 # Create your views here.
+def Registers(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        firstName = request.POST['first--name']
+        lastName = request.POST['last--name']
+
+
+        # Check if a user with the same username already exists
+        if User.objects.filter(username=email).exists():
+            messages.info(request, 'User already exists')
+            return render(request, 'register.html')
+        else:
+            # Create a new user
+            register = User.objects.create_user(username=email, password=password, first_name=firstName, lastname=lastName)
+
+            # No need to call save() after create_user(), as it's already saved
+            return redirect('login')
+        
+    else:
+        return render(request, 'register.html')
+    
+
+def Login(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=email, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            print('User logged in successfully')
+            return redirect('home')
+        else:
+            messages.info(request, 'Invalid Credentials')
+            return render(request, 'login.html')
+        
+
