@@ -45,4 +45,16 @@ def Login(request):
             messages.info(request, 'Invalid Credentials')
             return render(request, 'login.html')
         
+def home(request):
+    return (request, 'home.html')
+
+def explore(request):
+    edu_books = EBooksModel.objects.filter(category='Education')
+    fiction_books = EbooksModel.objects.filter(category='Fiction')
+    science_books = EBooksModel.objects.filter(category='Science')
+    return render(request, 'explore.html', {'edu_books':edu_books, 'fiction_books':fiction_books, 'science_books':science_books})
+
+@login_required
+def addBook(request, user_id):
+    user = User.objects.get(id)
 
