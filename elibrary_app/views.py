@@ -56,5 +56,40 @@ def explore(request):
 
 @login_required
 def addBook(request, user_id):
-    user = User.objects.get(id)
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        form = EBooksForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.author = user.first_name + " " + user.last_name
+            book.author_id = user.id 
+            print(book.author)
+            book.save()
+            print()
+            print()
+            print(book.author)
+            print("Book saved successfully")
+            print()
+            print()
+            return redirect('home')
+        else:
+            print(form.errors)
+    else:
+        form = EBooksForm()
+    return render(request, 'addBook.html', {'form':form})
+
+
+def contri(request, user_id):
+    books = EBooksModel.objects.filter(author_id=user_id)
+    return render(request, 'contri.html', {'books': books})
+
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
+
+def deleteBook(request, book_id):
+    book = EBooksModel.objects.get(id=book_id)
+    book.delete()
+    return redirect('home')
+
 
