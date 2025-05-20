@@ -93,3 +93,26 @@ def deleteBook(request, book_id):
     return redirect('home')
 
 
+def editBook(request, book_id):
+    book =EBooksModel.objects.get(id=book_id)
+    if request.method == 'POST':
+        form = EBooksForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            print()
+            print()
+            print("Book updated successfully")
+            print()
+            print()
+            return redirect('home')
+        else:
+            print(form.errors)
+    else:
+        form = EBooksForm(instance=book)
+    return render(request, 'editBook.html', {'form': form, 'book': book})
+
+def viewBook(request, book_id):
+    book = EBooksModel.objects.get(id=book_id)
+    book.summary = book.summary.replace('\n', '<br/>')
+    return render(request, 'viewBook.html', {'book': book})
+
