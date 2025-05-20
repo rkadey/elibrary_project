@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from elibrary_app.forms import EBooksForm
 from elibrary_app.models import EBooksModel
-from django.contrib.auth.models import User,auth
+from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -50,7 +50,7 @@ def home(request):
 
 def explore(request):
     edu_books = EBooksModel.objects.filter(category='Education')
-    fiction_books = EbooksModel.objects.filter(category='Fiction')
+    fiction_books = EBooksModel.objects.filter(category='Fiction')
     science_books = EBooksModel.objects.filter(category='Science')
     return render(request, 'explore.html', {'edu_books':edu_books, 'fiction_books':fiction_books, 'science_books':science_books})
 

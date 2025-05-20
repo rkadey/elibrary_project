@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class EBOOKSModel(models.Model):
+class EBooksModel(models.Model):
 
     title = models.CharField(max_length = 80)
     summary = models.TextField(max_length=2000)
