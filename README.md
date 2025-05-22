@@ -1,6 +1,15 @@
 # E-Library Django App
 E-Library is a web-based application built with Django that allows users to manage a digital library by storing, organizing, and accessing books. Whether you are creating a personal book archive or managing a shared repository for an organization, E-Library provides a simple and intuitive interface for digital library management.
 
+### 🔹 Login Page
+![Book List](screenshots/Registration.png)
+
+### 🔹 Home Page
+![Home Page](screenshots/homepage.png)
+
+### 🔹 Book Detail
+![Book Detail](screenshots/Details.png)
+
 ## 🚀 Features
 
 - 📖 Upload and store digital books (PDF, EPUB, etc.)
