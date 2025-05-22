@@ -21,7 +21,7 @@ def Registers(request):
             return render(request, 'register.html')
         else:
             # Create a new user
-            register = User.objects.create_user(username=email, password=password, first_name=firstName, lastname=lastName)
+            register = User.objects.create_user(username=email, password=password, first_name=firstName, last_name=lastName)
 
             # No need to call save() after create_user(), as it's already saved
             return redirect('login')
@@ -44,6 +44,8 @@ def Login(request):
         else:
             messages.info(request, 'Invalid Credentials')
             return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
         
 def home(request):
     return render(request, 'home.html')
