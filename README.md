@@ -5,7 +5,7 @@ E-Library is a web-based application built with Django that allows users to mana
 ![Book List](screenshots/Registration.png)
 
 ### 🔹 Home Page
-![Home Page](screenshots/homepage.png)
+![Home Page](screenshots/Homepage.png)
 
 ### 🔹 Book Detail
 ![Book Detail](screenshots/Details.png)
