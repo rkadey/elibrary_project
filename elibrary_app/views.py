@@ -46,7 +46,7 @@ def Login(request):
             return render(request, 'login.html')
         
 def home(request):
-    return (request, 'home.html')
+    return render(request, 'home.html')
 
 def explore(request):
     edu_books = EBooksModel.objects.filter(category='Education')
@@ -85,12 +85,12 @@ def contri(request, user_id):
 
 def logout(request):
     auth.logout(request)
-    return redirect('home')
+    return render(request, 'home.html')
 
 def deleteBook(request, book_id):
     book = EBooksModel.objects.get(id=book_id)
     book.delete()
-    return redirect('home')
+    return render(request, 'home.html')
 
 
 def editBook(request, book_id):
