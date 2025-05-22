@@ -32,7 +32,7 @@ E-Library is a web-based application built with Django that allows users to mana
 1. **Clone the repository:**
 
    ```bash
-   git clone <your-repo-url>
+   git clone <url>
    cd e-library
    ```
 2. **Create and activate a virtual environment**
